@@ -1,0 +1,23 @@
+<h1>Credit Card Details</h1>
+<div class="cardDetail">
+  <p>Card number: {{ cardData$.card_number }}</p>
+  <p>Cardholder name: {{ cardData$.cardholder_name }}</p>
+  <p>csc code: {{ cardData$.csc_code }}</p>
+  <p>Expiration date month: {{ cardData$.expiration_date_month }}</p>
+  <p>Expiration date year: {{ cardData$.expiration_date_year }}</p>
+  <p>Issuer: {{ cardData$.issuer }}</p>
+</div>
+<h3>List of Transactions by this {{ cardData$.cardholder_name }}</h3>
+<div class="transactionList">
+  <div *ngFor="let transaction of transactions$ | async">
+    {{
+      transaction.credit_card.card_number == cardData$.card_number
+        ? "Amount: " + transaction.amount + " " + transaction.currency
+        : null
+    }}
+  </div>
+</div>
+
+<div></div>
+
+<div class="btn_remove_card" (click)="deleteCard(cardData$)">REMOVE CARD</div>

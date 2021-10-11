@@ -1,0 +1,20 @@
+<h1>Credit card overview</h1>
+<div class="container">
+  <ol *ngFor="let card of creditCardService$ | async; let i = index">
+    <div class="creditCardStyle" (click)="navigateToCardDetails(i, card)">
+      <div style="padding-top: 7px;">
+        <span class="boldText">Card number:</span> 
+        {{ card.card_number }}
+      </div>
+      <div>
+        <span class="boldText">Cardholder name:</span>
+        {{ card.cardholder_name }}
+      </div>
+      <div>
+        <span class="boldText">Issuer:</span>
+        {{ card.issuer }}
+      </div> 
+    </div>
+  </ol>
+</div>
+

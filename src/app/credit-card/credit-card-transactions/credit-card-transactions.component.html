@@ -1,0 +1,112 @@
+<h1>Transactions</h1>
+<div>
+  <form [formGroup]="addTransactionFormGroup" (ngSubmit)="onSubmitTransaction()">
+    <div class="form-container">
+      <div class="form-field">
+        <label for="credit_card">Credit card number</label><br />
+        <input 
+          type="text" 
+          name="credit_card" 
+          class="form-control" 
+          formControlName = "credit_card"
+          />
+      </div>
+
+      <pre></pre>
+
+      <div class="form-field">
+        <label for="amount">Amount</label><br />
+        <input 
+          type="number" 
+          name="amount" 
+          class="form-control" 
+          required
+          formControlName="amount"
+        />
+      </div>
+  
+      <pre></pre>
+
+      <div class="form-field">
+        <label for="currency">Currency</label><br />
+        <input 
+          type="text" 
+          name="currency" 
+          class="form-control" 
+          required
+          formControlName = "currency"/>
+      </div>
+  
+      <pre></pre>
+
+      <div class="form-field">
+        <label for="date">Date</label><br/>
+        <input
+          type="date"
+          name="date"
+          class="form-control"
+          formControlName="date"
+        />
+      </div>
+
+      <pre></pre>
+
+      <div class="form-field">
+        <label for="comment">Comment</label><br/>
+        <input
+          type="text"
+          name="comment"
+          class="form-control"
+          formControlName="comment"
+        />
+      </div>
+      <pre></pre>
+
+    <pre></pre>
+    
+    <button type="submit" (click)="showToast()" >Submit new transaction</button>
+
+    </div>
+  </form>
+
+<pre></pre>
+
+<hr>
+
+
+<button (click)="onSubmit()">Press here for new transactions</button>
+
+<pre></pre>
+
+<div>
+  <label for="search">Search</label>
+  <input
+    type="text"
+    id="searchValue"
+    name="searchValue"
+    placeholder="search for transaction"
+    ngModel #searchvalue="ngModel"
+    [(ngModel)]="searchValue"
+  />
+  <table>
+    <thead>
+      <tr>
+        <th>Cardnumber</th>
+        <th>Amount</th>
+        <th>Currency</th>
+        <th>Comment</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transaction of transactions$ | async | searchfilter:searchValue">
+        <td>{{ transaction.credit_card.card_number }}</td>
+        <td>{{ transaction.amount }}</td>
+        <td>{{ transaction.currency }}</td>
+        <td>{{ transaction.comment }}</td>
+        <td>{{ transaction.date | date: "dd/MM/yyyy" }}</td>
+        <td class="delete" (click)="deleteTransaction(transaction)"> Delete </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

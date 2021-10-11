@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.creditCardStyle {
+  border-radius: 16px;
+  padding-left: 7px;
+  background-color: #d3d3d3;
+  height: 90px;
+  width: 280px;
+}
+
+.creditCardStyle:hover {
+  cursor: pointer;
+  background-color: #808080;
+}
+
+.boldText {
+  font-weight: bold;
+}
+
+.creditCardStyle > div {
+  margin-top: 7px;
+}

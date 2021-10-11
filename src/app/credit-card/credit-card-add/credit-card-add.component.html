@@ -1,0 +1,108 @@
+  <div class="content">
+    <h1>Add a credit card</h1>
+    <form [formGroup]="addCreditCardFormGroup" (ngSubmit)="onSubmit()">
+      <div class="form-container">
+        <div class="form-field">
+          <label for="card_number">Card number</label><br />
+          <input 
+            type="number" 
+            name="card_number" 
+            class="form-control" 
+            formControlName = "card_number"
+            />
+        </div>
+        <div *ngIf="card_number.errors?.invalid_card_length && card_number.dirty  " class="error">
+            Credit card number must have a length between 7-16
+        </div>
+
+        <pre></pre>
+
+        <div class="form-field">
+          <label for="cardholder_name">Cardholder name</label><br />
+          <input 
+            type="text" 
+            name="cardholder_name" 
+            class="form-control" 
+            required
+            formControlName="cardholder_name"
+          />
+        </div>
+        <div *ngIf="cardholder_name.errors?.required && cardholder_name.dirty">
+          *Name is required
+        </div>
+    
+        <pre></pre>
+
+        <div class="form-field">
+          <label for="csc_code">CSC code</label><br />
+          <input 
+            type="number" 
+            name="csc_code" 
+            class="form-control" 
+            required
+            formControlName = "csc_code"/>
+        </div>
+        <div *ngIf="csc_code.errors?.invalid_csc_code_length && csc_code.dirty" class="error">
+            Csc code must be 3 in length
+        </div>
+    
+        <pre></pre>
+
+        <div class="form-field">
+          <label for="expiration_date_month">Expiration Date Month</label><br/>
+          <input
+            type="number"
+            name="expiration_date_month"
+            class="form-control"
+            min="1"
+            max="12"
+            formControlName="expiration_date_month"
+          />
+        </div>
+        <div *ngIf="expiration_date_month.errors?.invalid_month && expiration_date_month.dirty">
+          month can only be the values 1-12
+        </div>
+    
+        <pre></pre>
+
+        <div class="form-field">
+          <label for="expiration_date_year">Expiration Date Year</label><br />
+    
+          <input
+            type="number"
+            name="expiration_date_year"
+            class="form-control"
+            min="1"
+            max="31"
+            formControlName ="expiration_date_year"
+          />
+        </div>
+        <div *ngIf="expiration_date_year.errors?.invalid_year && expiration_date_year.dirty">
+          year can only be the values 1-31
+        </div>
+        <pre></pre>
+
+  
+      <div class="form-field">
+        <label for="issuer">Issuer</label><br />
+        <input 
+          type="text" 
+          name="issuer" 
+          class="form-control" 
+          formControlName = "issuer"
+        />
+      </div>
+  
+      <pre></pre>
+
+
+      <button type="submit" (click)="showToast()" [disabled]="addCreditCardFormGroup.invalid">Submit card</button>
+
+      </div>
+    </form>
+  </div>
+
+
+
+
+
